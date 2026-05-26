@@ -7,20 +7,21 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --meng-bg:#F5F2EC;        /* warm, paper-like background */
+    --meng-bg:#F5F7FA;
     --meng-card:#FFFFFF;
-    --meng-ink:#101820;       /* near-black navy */
+    --meng-ink:#0F1A2A;
     --meng-ink-soft:#3B4654;
     --meng-mute:#7A8493;
-    --meng-line:#E6E1D7;
-    --meng-primary:#0E2A47;   /* deep Meng navy */
-    --meng-primary-700:#0A2038;
-    --meng-accent:#C8102E;    /* warm Danish red */
+    --meng-line:#E3E8EF;
+    --meng-primary:#1976D2;       /* Meng Biler blue (logo) */
+    --meng-primary-700:#1565C0;
+    --meng-primary-900:#0E4F94;
+    --meng-accent:#C8102E;        /* Warm CTA red, matches mengbiler.dk highlights */
     --meng-accent-700:#A30D26;
-    --meng-gold:#B68A3E;
+    --meng-success:#1E8E5A;
     --radius-lg:18px;
     --radius-md:12px;
     --radius-sm:8px;
@@ -38,78 +39,85 @@
   .text-primary{color:var(--meng-primary)}
   .bg-accent{background:var(--meng-accent)}
   .text-accent{color:var(--meng-accent)}
-  .ring-accent{--tw-ring-color:var(--meng-accent)}
 
-  .card-shadow{box-shadow:0 1px 2px rgba(16,24,32,.04),0 12px 40px -12px rgba(16,24,32,.18)}
-  .soft-shadow{box-shadow:0 1px 2px rgba(16,24,32,.04),0 6px 18px -8px rgba(16,24,32,.12)}
+  .card-shadow{box-shadow:0 1px 2px rgba(16,24,40,.04),0 12px 40px -12px rgba(16,24,40,.18)}
+  .soft-shadow{box-shadow:0 1px 2px rgba(16,24,40,.04),0 6px 18px -8px rgba(16,24,40,.12)}
 
-  .btn-primary{background:var(--meng-primary);color:#fff;border-radius:999px;padding:14px 22px;font-weight:600;transition:transform .15s ease, background .2s ease, box-shadow .2s ease;box-shadow:0 8px 22px -10px rgba(14,42,71,.55)}
+  .btn-primary{background:var(--meng-primary);color:#fff;border-radius:999px;padding:14px 22px;font-weight:600;transition:transform .15s ease, background .2s ease, box-shadow .2s ease;box-shadow:0 8px 22px -10px rgba(25,118,210,.55)}
   .btn-primary:hover{background:var(--meng-primary-700);transform:translateY(-1px)}
   .btn-primary:active{transform:translateY(0)}
-  .btn-accent{background:var(--meng-accent);color:#fff;border-radius:999px;padding:14px 22px;font-weight:600;transition:transform .15s ease, background .2s ease, box-shadow .2s ease;box-shadow:0 8px 22px -10px rgba(200,16,46,.6)}
+  .btn-accent{background:var(--meng-accent);color:#fff;border-radius:999px;padding:14px 22px;font-weight:600;transition:transform .15s ease, background .2s ease, box-shadow .2s ease;box-shadow:0 8px 22px -10px rgba(200,16,46,.55)}
   .btn-accent:hover{background:var(--meng-accent-700);transform:translateY(-1px)}
   .btn-ghost{background:transparent;color:var(--meng-ink);border:1px solid var(--meng-line);border-radius:999px;padding:13px 22px;font-weight:500;transition:all .2s ease}
-  .btn-ghost:hover{background:#fff;border-color:#cfc8b8}
+  .btn-ghost:hover{background:#fff;border-color:#c8d0db}
 
   /* Option cards */
   .opt{display:flex;gap:16px;align-items:flex-start;background:#fff;border:1px solid var(--meng-line);border-radius:var(--radius-md);padding:18px 18px;text-align:left;width:100%;cursor:pointer;transition:all .18s ease;position:relative}
-  .opt:hover{border-color:#bfb5a0;transform:translateY(-2px);box-shadow:0 10px 30px -14px rgba(16,24,32,.18)}
-  .opt .dot{flex:0 0 auto;width:22px;height:22px;border-radius:999px;border:2px solid #cfc8b8;margin-top:4px;display:grid;place-items:center;transition:all .2s ease}
-  .opt[aria-selected="true"]{border-color:var(--meng-primary);background:#fbfaf6;box-shadow:0 10px 30px -16px rgba(14,42,71,.35)}
+  .opt:hover{border-color:#9fb5cf;transform:translateY(-2px);box-shadow:0 10px 30px -14px rgba(16,24,40,.18)}
+  .opt .dot{flex:0 0 auto;width:22px;height:22px;border-radius:999px;border:2px solid #c8d0db;margin-top:4px;display:grid;place-items:center;transition:all .2s ease}
+  .opt[aria-selected="true"]{border-color:var(--meng-primary);background:#F4F9FE;box-shadow:0 10px 30px -16px rgba(25,118,210,.35)}
   .opt[aria-selected="true"] .dot{border-color:var(--meng-primary);background:var(--meng-primary)}
   .opt[aria-selected="true"] .dot::after{content:"";width:8px;height:8px;background:#fff;border-radius:999px}
   .opt .em{font-size:22px;line-height:1;margin-top:2px}
 
   /* Progress bar */
-  .progress-track{height:6px;background:#E6E1D7;border-radius:999px;overflow:hidden}
+  .progress-track{height:6px;background:#E3E8EF;border-radius:999px;overflow:hidden}
   .progress-fill{height:100%;background:linear-gradient(90deg,var(--meng-primary),var(--meng-accent));border-radius:999px;transition:width .5s cubic-bezier(.2,.7,.2,1)}
 
-  /* Step transition */
+  /* Step transitions */
   .step{opacity:0;transform:translateY(8px);transition:opacity .35s ease, transform .45s cubic-bezier(.2,.7,.2,1);display:none}
   .step.is-active{display:block;opacity:1;transform:none}
   .step.is-leaving{opacity:0;transform:translateY(-8px)}
 
   /* Inputs */
   .field label{font-size:13px;font-weight:500;color:var(--meng-ink-soft);margin-bottom:6px;display:block}
-  .field input{width:100%;padding:13px 14px;border:1px solid var(--meng-line);background:#fff;border-radius:var(--radius-md);font-size:15px;color:var(--meng-ink);transition:border-color .2s, box-shadow .2s}
-  .field input:focus{outline:none;border-color:var(--meng-primary);box-shadow:0 0 0 4px rgba(14,42,71,.08)}
+  .field input,.field textarea,.field select{width:100%;padding:13px 14px;border:1px solid var(--meng-line);background:#fff;border-radius:var(--radius-md);font-size:15px;color:var(--meng-ink);transition:border-color .2s, box-shadow .2s;font-family:inherit}
+  .field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--meng-primary);box-shadow:0 0 0 4px rgba(25,118,210,.12)}
   .field .err{display:none;color:var(--meng-accent);font-size:12.5px;margin-top:6px}
   .field.invalid .err{display:block}
-  .field.invalid input{border-color:var(--meng-accent)}
+  .field.invalid input,.field.invalid textarea{border-color:var(--meng-accent)}
 
   /* Result car card */
   .car-card{background:#fff;border:1px solid var(--meng-line);border-radius:var(--radius-lg);overflow:hidden;transition:transform .25s ease, box-shadow .25s ease}
-  .car-card:hover{transform:translateY(-3px);box-shadow:0 24px 50px -22px rgba(16,24,32,.25)}
-  .car-illu{aspect-ratio:16/10;background:linear-gradient(180deg,#EFEAE0 0%,#E2DCCE 100%);position:relative;overflow:hidden}
+  .car-card:hover{transform:translateY(-3px);box-shadow:0 24px 50px -22px rgba(16,24,40,.22)}
+  .car-illu{aspect-ratio:16/10;background:linear-gradient(180deg,#EEF3F8 0%,#DCE5EF 100%);position:relative;overflow:hidden}
   .car-illu svg{width:100%;height:100%;display:block}
-  .pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--meng-primary);background:#EEF1F6;border-radius:999px;padding:5px 10px}
-
-  /* Header brand */
-  .brand-mark{font-family:'Fraunces',serif;font-weight:700;letter-spacing:-0.02em}
+  .pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--meng-primary);background:#E8F1FB;border-radius:999px;padding:5px 10px}
+  .stock-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;padding:4px 9px;border-radius:999px}
+  .stock-on{background:#E6F5EE;color:var(--meng-success)}
+  .stock-off{background:#FEF2E5;color:#B26415}
+  .stock-on .dot,.stock-off .dot{width:6px;height:6px;border-radius:999px}
+  .stock-on .dot{background:var(--meng-success)}
+  .stock-off .dot{background:#D08840}
 
   /* Step badge */
   .step-badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--meng-accent)}
   .step-badge .bullet{width:6px;height:6px;border-radius:999px;background:var(--meng-accent);display:inline-block}
 
-  /* Profile crest in result */
-  .crest{background:linear-gradient(160deg,#0E2A47 0%,#15375C 60%,#1B4374 100%);color:#fff;border-radius:var(--radius-lg)}
+  /* Profile crest */
+  .crest{background:linear-gradient(160deg,#0F4F94 0%,#1565C0 55%,#1976D2 100%);color:#fff;border-radius:var(--radius-lg)}
   .crest .accent-line{height:3px;width:48px;background:var(--meng-accent);border-radius:999px}
 
   /* Subtle texture */
+  .paper{position:relative}
   .paper::before{
     content:"";position:absolute;inset:0;pointer-events:none;
-    background-image:radial-gradient(rgba(16,24,32,.025) 1px,transparent 1px);
+    background-image:radial-gradient(rgba(16,24,40,.025) 1px,transparent 1px);
     background-size:18px 18px;mask-image:linear-gradient(180deg,black,transparent 60%);
     border-radius:inherit;
   }
 
-  /* Small helpers */
   .divider{height:1px;background:var(--meng-line);width:100%}
   @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
   .fadeUp{animation:fadeUp .5s cubic-bezier(.2,.7,.2,1) both}
 
   /* Focus visibility */
-  button:focus-visible, .opt:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(200,16,46,.25), 0 8px 22px -10px rgba(14,42,71,.4)}
+  button:focus-visible, .opt:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(25,118,210,.25), 0 8px 22px -10px rgba(25,118,210,.4)}
+
+  /* Booking mode selector */
+  .mode-card{background:#fff;border:1px solid var(--meng-line);border-radius:var(--radius-md);padding:16px;cursor:pointer;transition:all .18s ease;text-align:left}
+  .mode-card:hover{border-color:#9fb5cf;box-shadow:0 10px 30px -14px rgba(16,24,40,.18)}
+  .mode-card[aria-selected="true"]{border-color:var(--meng-primary);background:#F4F9FE;box-shadow:0 10px 30px -16px rgba(25,118,210,.35)}
 </style>
 </head>
 <body class="min-h-screen">
@@ -117,13 +125,17 @@
 <!-- Page chrome to mimic embedding on mengbiler.dk -->
 <header class="border-b border-line bg-meng">
   <div class="max-w-6xl mx-auto px-5 sm:px-8 py-4 flex items-center justify-between">
-    <div class="flex items-center gap-3">
-      <div class="w-9 h-9 rounded-md bg-primary grid place-items-center text-white brand-mark text-lg">M</div>
-      <div class="leading-tight">
-        <div class="brand-mark text-lg text-ink">Meng Biler</div>
-        <div class="text-[11px] uppercase tracking-[.18em] text-mute">Siden 1955 · Familieejet</div>
-      </div>
-    </div>
+    <a href="#" class="flex items-center" aria-label="Meng Biler – forside">
+      <!-- Logo: MENG | BILER -->
+      <svg viewBox="0 0 240 44" width="170" height="32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <style>
+          .mb-word{font-family:'Inter','Arial Black',Arial,sans-serif;font-weight:900;font-size:36px;letter-spacing:-1px;fill:#1976D2}
+        </style>
+        <text x="0" y="34" class="mb-word">MENG</text>
+        <rect x="113" y="6" width="4" height="32" fill="#B7BCC4"/>
+        <text x="128" y="34" class="mb-word">BILER</text>
+      </svg>
+    </a>
     <nav class="hidden md:flex items-center gap-7 text-sm text-ink-soft">
       <a class="hover:text-ink" href="#">Brugte biler</a>
       <a class="hover:text-ink" href="#">Nye biler</a>
@@ -131,7 +143,7 @@
       <a class="hover:text-ink" href="#">Om os</a>
       <a class="hover:text-ink" href="#">Kontakt</a>
     </nav>
-    <a href="#" class="hidden sm:inline-flex items-center text-sm font-medium text-primary">Ring 70 20 20 20</a>
+    <a href="tel:+4531317081" class="hidden sm:inline-flex items-center text-sm font-semibold text-primary">+45 31 31 70 81</a>
   </div>
 </header>
 
@@ -141,27 +153,27 @@
   <section class="mb-8 sm:mb-12 fadeUp">
     <div class="flex items-center gap-2 mb-4">
       <span class="step-badge"><span class="bullet"></span> Bil-Psykologen</span>
-      <span class="text-xs text-mute">· Gratis · 60 sekunder</span>
+      <span class="text-xs text-mute">· Gratis · 90 sekunder</span>
     </div>
     <h1 class="font-display text-3xl sm:text-5xl text-ink leading-[1.05] max-w-3xl">
       Find den bil, der passer til <em class="not-italic text-accent">dig</em> – ikke kun til din kalender.
     </h1>
     <p class="mt-4 text-ink-soft max-w-2xl text-[15.5px] sm:text-base">
-      Vores Bil-Psykolog stiller fire enkle spørgsmål om din hverdag, dine vaner og dine små bekymringer bag rattet.
-      Til sidst får du din helt egen køreprofil og to konkrete bilmatches fra vores lager.
+      Vores Bil-Psykolog stiller fem enkle spørgsmål om din hverdag, dine vaner og dine små bekymringer bag rattet.
+      Bagefter får du din helt egen køreprofil og to konkrete bilmatches fra vores lager i Fredericia.
     </p>
   </section>
 
   <!-- Quiz card -->
-  <section class="bg-card border border-line rounded-[20px] card-shadow overflow-hidden relative paper">
+  <section class="bg-card border border-line rounded-[20px] card-shadow overflow-hidden paper">
     <!-- Progress -->
     <div class="px-5 sm:px-10 pt-7 sm:pt-9">
       <div class="flex items-center justify-between mb-3">
-        <div class="text-xs font-medium tracking-wide text-mute" id="stepLabel">Spørgsmål 1 af 4</div>
+        <div class="text-xs font-medium tracking-wide text-mute" id="stepLabel">Spørgsmål 1 af 5</div>
         <button id="restartTop" class="text-xs text-mute hover:text-ink underline-offset-4 hover:underline hidden">Start forfra</button>
       </div>
       <div class="progress-track">
-        <div class="progress-fill" id="progressFill" style="width:25%"></div>
+        <div class="progress-fill" id="progressFill" style="width:20%"></div>
       </div>
     </div>
 
@@ -212,6 +224,7 @@
           <p id="q2-sub" class="text-mute mt-2 text-sm"></p>
         </div>
         <div class="grid gap-3" id="q2-options"></div>
+        <div class="mt-6"><button class="btn-ghost" data-back="1">← Tilbage</button></div>
       </div>
 
       <!-- STEP 3 -->
@@ -222,20 +235,93 @@
           <p id="q3-sub" class="text-mute mt-2 text-sm"></p>
         </div>
         <div class="grid gap-3" id="q3-options"></div>
+        <div class="mt-6"><button class="btn-ghost" data-back="2">← Tilbage</button></div>
       </div>
 
-      <!-- STEP 4: Lead form -->
+      <!-- STEP 4: Annual kilometers -->
       <div class="step" data-step="4">
         <div class="mb-7">
-          <div class="step-badge mb-3"><span class="bullet"></span> Næsten i mål</div>
-          <h2 class="font-display text-2xl sm:text-3xl text-ink leading-tight">De psykologiske detaljer</h2>
-          <p class="text-ink-soft mt-3 text-[15px] max-w-2xl">
-            Indtast dine oplysninger for at se din personlige køreprofil og dine bilmatches.
-            Vi sender også profilen til en af vores rådgivere, så vi kan have kaffen klar, hvis du vil prøvekøre en af dem.
+          <div class="step-badge mb-3"><span class="bullet"></span> Brugsmønster</div>
+          <h2 class="font-display text-2xl sm:text-3xl text-ink leading-tight">Hvor mange kilometer kører du typisk om året?</h2>
+          <p class="text-mute mt-2 text-sm">Det hjælper os med at finde den helt rigtige drivlinje – og spare dig penge i længden.</p>
+        </div>
+        <div class="grid gap-3" id="q4-options"></div>
+        <div class="mt-6"><button class="btn-ghost" data-back="3">← Tilbage</button></div>
+      </div>
+
+      <!-- STEP 5: Ownership / financing preference -->
+      <div class="step" data-step="5">
+        <div class="mb-7">
+          <div class="step-badge mb-3"><span class="bullet"></span> Den økonomiske ramme</div>
+          <h2 class="font-display text-2xl sm:text-3xl text-ink leading-tight">Hvordan vil du helst eje din næste bil?</h2>
+          <p class="text-mute mt-2 text-sm">Helt uden tal – bare en fornemmelse. Vi tilpasser anbefalingerne efter dit svar.</p>
+        </div>
+        <div class="grid gap-3" id="q5-options"></div>
+        <div class="mt-6"><button class="btn-ghost" data-back="4">← Tilbage</button></div>
+      </div>
+
+      <!-- STEP 6: Result -->
+      <div class="step" data-step="6">
+        <div class="grid lg:grid-cols-[1.05fr_1fr] gap-6 sm:gap-8 items-start">
+          <div class="crest p-7 sm:p-9 relative overflow-hidden">
+            <div class="accent-line mb-5"></div>
+            <div class="text-xs uppercase tracking-[.2em] text-white/70 mb-2">Din køreprofil</div>
+            <h2 id="profileTitle" class="font-display text-3xl sm:text-4xl leading-tight">—</h2>
+            <p id="profileDesc" class="mt-4 text-white/85 text-[15px] leading-relaxed">—</p>
+            <div class="mt-7 grid grid-cols-3 gap-3" id="profileTraits"></div>
+
+            <div class="mt-8 pt-6 border-t border-white/15">
+              <div class="text-xs uppercase tracking-[.15em] text-white/60 mb-3">Hvad gør jeg nu?</div>
+              <p class="text-white/85 text-[14px] leading-relaxed">
+                Vælg den bil du har lyst til at prøvekøre, eller bed Jacob om at finde præcis den model, du drømmer om. Vi vender tilbage inden for én arbejdsdag.
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <div class="flex items-baseline justify-between mb-3">
+              <h3 class="font-display text-xl text-ink">Dine to bedste matches</h3>
+              <a href="https://mengbiler.dk/biler-til-salg/" target="_blank" rel="noopener" class="text-xs text-primary font-semibold hover:underline">Se hele lageret →</a>
+            </div>
+            <div class="grid gap-5" id="carResults"></div>
+
+            <div class="mt-6 bg-card border border-line rounded-[var(--radius-lg)] p-5 soft-shadow">
+              <div class="flex gap-4 items-start">
+                <div class="w-11 h-11 rounded-full bg-[#E8F1FB] grid place-items-center text-primary font-display text-lg flex-none">J</div>
+                <div class="flex-1">
+                  <div class="text-sm font-semibold text-ink">Jacob fra Meng Biler</div>
+                  <p class="text-sm text-ink-soft mt-1">
+                    “Er den helt rigtige bil ikke på lager lige nu? Giv mig en uge – jeg kender markedet og kan ofte få præcis den model, farve og udstyr, du ønsker, hjem til Erritsø.”
+                  </p>
+                  <button class="mt-3 text-sm font-semibold text-accent hover:underline" data-jacob>
+                    Bed Jacob om at finde min bil →
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-5 flex flex-wrap gap-3">
+              <button class="btn-ghost" data-restart>Start forfra</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 7: Booking form -->
+      <div class="step" data-step="7">
+        <div class="mb-6">
+          <div class="step-badge mb-3"><span class="bullet"></span> Sidste skridt</div>
+          <h2 id="bookingTitle" class="font-display text-2xl sm:text-3xl text-ink leading-tight">Book din prøvetur hos Meng Biler</h2>
+          <p id="bookingIntro" class="text-ink-soft mt-3 text-[15px] max-w-2xl">
+            Indtast dine oplysninger, så har vi kaffen klar, når du kommer. Vi bekræfter tid og bil samme arbejdsdag.
           </p>
         </div>
 
         <form id="leadForm" class="grid sm:grid-cols-2 gap-4 max-w-2xl" novalidate>
+
+          <!-- Booking mode picker (only shown for test-drive path) -->
+          <div class="sm:col-span-2 grid sm:grid-cols-2 gap-3" id="modePicker"></div>
+
           <div class="field sm:col-span-2">
             <label for="navn">Navn</label>
             <input id="navn" name="navn" type="text" autocomplete="name" placeholder="Fx. Anne Mortensen" />
@@ -252,47 +338,74 @@
             <div class="err">Indtast et telefonnummer på mindst 8 cifre.</div>
           </div>
 
+          <!-- Test drive only: preferred date -->
+          <div class="field" id="dateField">
+            <label for="dato">Ønsket dato for prøvetur</label>
+            <input id="dato" name="dato" type="date" />
+            <div class="err">Vælg en dato, der passer dig.</div>
+          </div>
+          <div class="field" id="timeField">
+            <label for="tid">Tidspunkt</label>
+            <select id="tid" name="tid">
+              <option value="">Vælg et tidspunkt…</option>
+              <option>Formiddag (09–12)</option>
+              <option>Tidlig eftermiddag (12–14)</option>
+              <option>Eftermiddag (14–17)</option>
+              <option>Efter arbejde (17–18)</option>
+            </select>
+          </div>
+
+          <!-- Jacob only: which model -->
+          <div class="field sm:col-span-2 hidden" id="modelField">
+            <label for="oensketModel">Hvilken model leder du efter?</label>
+            <input id="oensketModel" name="oensketModel" type="text" placeholder="Fx. BMW X3 xDrive30e, sort, gerne under 50.000 km" />
+            <div class="err">Skriv hvilken model Jacob skal finde til dig.</div>
+          </div>
+
+          <div class="field sm:col-span-2">
+            <label for="besked">Besked (valgfrit)</label>
+            <textarea id="besked" name="besked" rows="3" placeholder="Skal du have indbytning vurderet? Specielle ønsker til farve eller udstyr?"></textarea>
+          </div>
+
           <div class="sm:col-span-2 flex items-start gap-3 text-xs text-mute mt-1">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="mt-0.5 flex-none"><path d="M12 2l8 3v6c0 5-3.5 9.3-8 11-4.5-1.7-8-6-8-11V5l8-3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
             <p>Vi behandler dine oplysninger fortroligt og bruger dem kun til at hjælpe dig videre. Du kan til enhver tid bede os slette dem. Se vores <a href="#" class="underline hover:text-ink">privatlivspolitik</a>.</p>
           </div>
 
-          <div class="sm:col-span-2 flex items-center justify-between gap-3 mt-2">
-            <button type="button" class="btn-ghost" data-back>← Tilbage</button>
-            <button type="submit" class="btn-primary">Vis min køreprofil →</button>
+          <div class="sm:col-span-2 flex items-center justify-between gap-3 mt-2 flex-wrap">
+            <button type="button" class="btn-ghost" data-back-to-result>← Tilbage til min profil</button>
+            <button type="submit" class="btn-accent" id="submitBtn">Send min booking →</button>
           </div>
         </form>
       </div>
 
-      <!-- STEP 5: Result -->
-      <div class="step" data-step="5">
-        <div class="grid lg:grid-cols-[1.05fr_1fr] gap-6 sm:gap-8 items-start">
-          <div class="crest p-7 sm:p-9 relative overflow-hidden">
-            <div class="accent-line mb-5"></div>
-            <div class="text-xs uppercase tracking-[.2em] text-white/70 mb-2">Din køreprofil</div>
-            <h2 id="profileTitle" class="font-display text-3xl sm:text-4xl leading-tight">—</h2>
-            <p id="profileDesc" class="mt-4 text-white/85 text-[15px] leading-relaxed">—</p>
-            <div class="mt-7 grid grid-cols-3 gap-3" id="profileTraits"></div>
-            <div class="mt-8 flex flex-wrap gap-3">
-              <a href="#bookings" class="btn-accent">Book en prøvetur hos Meng Biler</a>
-              <button class="btn-ghost !border-white/30 !text-white hover:!bg-white/10" data-restart>Start forfra</button>
+      <!-- STEP 8: Confirmation -->
+      <div class="step" data-step="8">
+        <div class="max-w-2xl">
+          <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-[#E6F5EE] text-[var(--meng-success)] mb-5">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h2 class="font-display text-3xl sm:text-4xl text-ink leading-tight" id="confirmTitle">Tak! Vi har modtaget din henvendelse.</h2>
+          <p class="text-ink-soft mt-3 text-[15px] leading-relaxed" id="confirmDesc"></p>
+
+          <div class="mt-6 bg-meng border border-line rounded-[var(--radius-md)] p-5 grid sm:grid-cols-3 gap-4 text-sm">
+            <div>
+              <div class="text-mute text-xs uppercase tracking-wider">Adresse</div>
+              <div class="text-ink mt-1 font-medium">Erritsø Møllebanke 4<br/>7000 Fredericia</div>
+            </div>
+            <div>
+              <div class="text-mute text-xs uppercase tracking-wider">Telefon</div>
+              <div class="text-ink mt-1 font-medium">+45 31 31 70 81</div>
+            </div>
+            <div>
+              <div class="text-mute text-xs uppercase tracking-wider">E-mail</div>
+              <div class="text-ink mt-1 font-medium">info@mengbiler.dk</div>
             </div>
           </div>
 
-          <div>
-            <div class="flex items-baseline justify-between mb-3">
-              <h3 class="font-display text-xl text-ink">Dine to bedste matches</h3>
-              <span class="text-xs text-mute">Udvalgt af Bil-Psykologen</span>
-            </div>
-            <div class="grid gap-5" id="carResults"></div>
-
-            <div class="mt-6 bg-card border border-line rounded-[var(--radius-lg)] p-5 soft-shadow flex gap-4 items-start">
-              <div class="w-11 h-11 rounded-full bg-[#EEF1F6] grid place-items-center text-primary font-display text-lg flex-none">L</div>
-              <div>
-                <div class="text-sm font-semibold text-ink">Lars Meng, salgsrådgiver</div>
-                <p class="text-sm text-ink-soft mt-1">“Jeg har set din profil – kom forbi i Skanderborg, så finder vi roen sammen. Kaffen står klar.”</p>
-              </div>
-            </div>
+          <div class="mt-7 flex flex-wrap gap-3">
+            <a href="https://mengbiler.dk/biler-til-salg/" target="_blank" rel="noopener" class="btn-primary">Se hele vores lager</a>
+            <button class="btn-ghost" data-restart>Start forfra</button>
           </div>
         </div>
       </div>
@@ -303,38 +416,36 @@
   <!-- Trust strip -->
   <section class="mt-10 grid sm:grid-cols-3 gap-4">
     <div class="bg-card border border-line rounded-[var(--radius-md)] p-5 soft-shadow">
-      <div class="text-2xl font-display text-primary">12.400+</div>
-      <div class="text-sm text-ink-soft mt-1">tilfredse kunder igennem 70 år</div>
+      <div class="text-2xl font-display text-primary">60+ biler</div>
+      <div class="text-sm text-ink-soft mt-1">på lager i Erritsø – klar til prøvetur</div>
     </div>
     <div class="bg-card border border-line rounded-[var(--radius-md)] p-5 soft-shadow">
-      <div class="text-2xl font-display text-primary">Trustpilot 4,8</div>
-      <div class="text-sm text-ink-soft mt-1">baseret på ærlige anmeldelser</div>
+      <div class="text-2xl font-display text-primary">Personlig service</div>
+      <div class="text-sm text-ink-soft mt-1">Familieejet bilhus med tid til dig</div>
     </div>
     <div class="bg-card border border-line rounded-[var(--radius-md)] p-5 soft-shadow">
-      <div class="text-2xl font-display text-primary">14 dages</div>
-      <div class="text-sm text-ink-soft mt-1">tilfredshedsgaranti på alle biler</div>
+      <div class="text-2xl font-display text-primary">Find-din-bil</div>
+      <div class="text-sm text-ink-soft mt-1">Vi skaffer den rette bil hjem, hvis den ikke er på lager</div>
     </div>
   </section>
 
   <footer class="text-xs text-mute mt-10 mb-4 text-center">
-    © Meng Biler A/S · Bil-Psykologen er et uforpligtende vejledningsværktøj.
+    © Meng Biler · Erritsø Møllebanke 4, 7000 Fredericia · Bil-Psykologen er et uforpligtende vejledningsværktøj.
   </footer>
 </main>
 
 <script>
-/* ---------- Car illustrations (inline SVG so we don't depend on placeholders) ---------- */
+/* ---------- Car silhouettes (inline SVG) ---------- */
 function carSvg(variant){
-  // Simple, premium-looking silhouettes in brand colors
   const palettes = {
-    suv:     {body:'#0E2A47', accent:'#C8102E', glass:'#cfd8e3'},
-    estate:  {body:'#2A3441', accent:'#B68A3E', glass:'#cfd8e3'},
-    compact: {body:'#1E3A5F', accent:'#C8102E', glass:'#cfd8e3'},
-    sedan:   {body:'#101820', accent:'#C8102E', glass:'#cfd8e3'},
-    ev:      {body:'#0E2A47', accent:'#5EC2D9', glass:'#dbe6ee'},
-    phev:    {body:'#1B4374', accent:'#7BC47F', glass:'#dbe6ee'},
+    suv:     {body:'#1976D2', accent:'#C8102E', glass:'#cfd8e3'},
+    estate:  {body:'#0F4F94', accent:'#B68A3E', glass:'#cfd8e3'},
+    compact: {body:'#1565C0', accent:'#C8102E', glass:'#cfd8e3'},
+    sedan:   {body:'#0F1A2A', accent:'#C8102E', glass:'#cfd8e3'},
+    ev:      {body:'#1976D2', accent:'#5EC2D9', glass:'#dbe6ee'},
+    phev:    {body:'#1565C0', accent:'#7BC47F', glass:'#dbe6ee'}
   };
   const p = palettes[variant] || palettes.suv;
-
   const shapes = {
     suv: `
       <path d="M40,150 Q70,80 160,75 L260,72 Q310,72 340,110 L420,118 Q460,122 470,150 L470,180 Q470,190 460,190 L40,190 Q30,190 30,180 Z" fill="${p.body}"/>
@@ -357,17 +468,16 @@ function carSvg(variant){
       <path d="M40,160 Q80,100 175,96 L320,94 Q380,96 420,128 L470,158 Q478,184 468,188 L50,188 Q40,186 40,178 Z" fill="${p.body}"/>
       <path d="M175,108 L320,104 Q360,106 388,128 L175,128 Z" fill="${p.glass}"/>`
   };
-
   return `
   <svg viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
     <defs>
       <linearGradient id="g${variant}" x1="0" x2="0" y1="0" y2="1">
-        <stop offset="0%" stop-color="#F5F2EC"/>
-        <stop offset="100%" stop-color="#E2DCCE"/>
+        <stop offset="0%" stop-color="#EEF3F8"/>
+        <stop offset="100%" stop-color="#DCE5EF"/>
       </linearGradient>
     </defs>
     <rect width="500" height="220" fill="url(#g${variant})"/>
-    <ellipse cx="250" cy="200" rx="220" ry="10" fill="rgba(16,24,32,.12)"/>
+    <ellipse cx="250" cy="200" rx="220" ry="10" fill="rgba(16,24,40,.12)"/>
     ${shapes[variant]}
     <circle cx="140" cy="190" r="22" fill="#111"/>
     <circle cx="140" cy="190" r="9"  fill="#3a3a3a"/>
@@ -377,12 +487,12 @@ function carSvg(variant){
   </svg>`;
 }
 
-/* ---------- Quiz logic ---------- */
+/* ---------- Quiz data ---------- */
 const state = {
   step: 1,
-  totalSteps: 4, // questions/form counted in progress (results = 100%)
-  answers: { branch: null, q2: null, q3: null },
-  lead: { navn:'', email:'', tlf:'' }
+  answers: { branch:null, q2:null, q3:null, q4:null, q5:null },
+  result: null,
+  booking: { mode:null, carIndex:0 } // mode: 'testdrive' | 'jacob'
 };
 
 const Q2 = {
@@ -390,8 +500,8 @@ const Q2 = {
     title: "Hvor mærker du den største friktion i hverdagens kørsel?",
     sub:   "Tænk på de små irritationer – dem du har vænnet dig til.",
     options: [
-      { value:'highway', emoji:'🛣️', label:'Motorvejsstøj og lange ture trætter mig.', sub:'Jeg vil komme frem uden at føle, jeg har arbejdet for det.' },
-      { value:'parking', emoji:'🅿️', label:'Parkering i byen og smalle gader stresser mig.', sub:'Jeg holder mig nogle gange fra ture, jeg egentlig gerne ville tage.' },
+      { value:'highway',       emoji:'🛣️', label:'Motorvejsstøj og lange ture trætter mig.', sub:'Jeg vil komme frem uden at føle, jeg har arbejdet for det.' },
+      { value:'parking',       emoji:'🅿️', label:'Parkering i byen og smalle gader stresser mig.', sub:'Jeg holder mig nogle gange fra ture, jeg egentlig gerne ville tage.' },
       { value:'tech_overload', emoji:'🎛️', label:'Min nuværende bil har for mange skærme og menuer.', sub:'Jeg savner knapper, jeg kan finde uden at kigge ned.' }
     ]
   },
@@ -399,18 +509,18 @@ const Q2 = {
     title: "Hvilken familie-situation er den, du oftest brokker dig over?",
     sub:   "Vær ærlig – ingen rådgiver lytter med endnu.",
     options: [
-      { value:'carseats', emoji:'👶', label:'At bukke mig ned for at spænde børn fast i autostolen.', sub:'Min ryg minder mig om det hver morgen.' },
-      { value:'vacation', emoji:'🏖️', label:'Sommerferien – cykler, kufferter og et telt skal også med.', sub:'Vi pakker som om vi flytter, hver gang vi tager afsted.' },
+      { value:'carseats',   emoji:'👶', label:'At bukke mig ned for at spænde børn fast i autostolen.', sub:'Min ryg minder mig om det hver morgen.' },
+      { value:'vacation',   emoji:'🏖️', label:'Sommerferien – cykler, kufferter og et telt skal også med.', sub:'Vi pakker som om vi flytter, hver gang vi tager afsted.' },
       { value:'school_run', emoji:'🏫', label:'Skolevejen – ind, ud, ind, ud, hver eneste dag.', sub:'Det skal være hurtigt og uden drama.' }
     ]
   },
   tech: {
     title: "Hvor klar er du egentlig på elbilslivet?",
-    sub:   "Vi spørger ikke, for at sælge dig en. Vi spørger, for at finde dig den rigtige.",
+    sub:   "Vi spørger ikke for at sælge dig en. Vi spørger for at finde dig den rigtige.",
     options: [
       { value:'home_charging', emoji:'🏡', label:'Jeg har (eller kan få) en ladestander hjemme.', sub:'90% af mine ture er under 80 km – jeg er klar.' },
       { value:'range_anxiety', emoji:'🧭', label:'Jeg er bekymret for rækkevidde og lange ture.', sub:'Sommerhuset i Skagen må ikke blive et regnestykke.' },
-      { value:'driving_feel', emoji:'🏁', label:'Jeg vil bare have det dér moderne, lydløse træk.', sub:'Acceleration uden gearskifte – ja tak.' }
+      { value:'driving_feel',  emoji:'🏁', label:'Jeg vil bare have det dér moderne, lydløse træk.', sub:'Acceleration uden gearskifte – ja tak.' }
     ]
   }
 };
@@ -429,9 +539,9 @@ const Q3 = {
     title: "Hvad må bilen for alt i verden ikke gå på kompromis med?",
     sub:   "Det punkt, hvor du siger ‘nej, ellers ikke’.",
     options: [
-      { value:'safety',   emoji:'🛡️', label:'Sikkerhed og topkarakterer i Euro NCAP.' },
-      { value:'space',    emoji:'📦', label:'Bagagerum, der sluger uge-indkøb og barnevogn.' },
-      { value:'economy',  emoji:'💰', label:'Driftsøkonomi – jeg skal ikke ærgre mig hver tank.' }
+      { value:'safety',  emoji:'🛡️', label:'Sikkerhed og topkarakterer i Euro NCAP.' },
+      { value:'space',   emoji:'📦', label:'Bagagerum, der sluger uge-indkøb og barnevogn.' },
+      { value:'economy', emoji:'💰', label:'Driftsøkonomi – jeg skal ikke ærgre mig hver tank.' }
     ]
   },
   tech: {
@@ -445,37 +555,51 @@ const Q3 = {
   }
 };
 
-/* Profiles + matches (with dynamic PHEV pivot for range-anxious tech users) */
-function computeResult(){
-  const { branch, q2, q3 } = state.answers;
+/* Step 4: Annual kilometers — same for all branches */
+const Q4_OPTIONS = [
+  { value:'low',    emoji:'🏘️', label:'Under 10.000 km om året',  sub:'Mest hverdag, indkøb og korte ture.' },
+  { value:'mid',    emoji:'🛣️', label:'10.000 – 25.000 km om året', sub:'Lidt pendling, weekendture og besøg.' },
+  { value:'high',   emoji:'🧭', label:'Over 25.000 km om året',   sub:'Bilen er nærmest mit andet kontor.' }
+];
 
-  // Tech: pivot to PHEV when range anxiety
+/* Step 5: Ownership preference — same for all branches */
+const Q5_OPTIONS = [
+  { value:'cash',      emoji:'🤝', label:'Jeg vil eje bilen og holde den i mange år', sub:'Køb eller udbetaling med finansiering.' },
+  { value:'finance',   emoji:'📅', label:'Fast månedlig ydelse er vigtigst',         sub:'Finansiering med tryghed og overblik.' },
+  { value:'lease',     emoji:'🔄', label:'Jeg vil bare have biler og service uden besvær', sub:'Privatleasing med skift hvert 3.-4. år.' },
+  { value:'undecided', emoji:'🤔', label:'Det ved jeg ikke endnu – vis mig mulighederne', sub:'Jacob hjælper mig med at finde formen.' }
+];
+
+/* ---------- Result logic ---------- */
+function computeResult(){
+  const { branch, q2, q3, q4, q5 } = state.answers;
+
+  // Build a small set of "modifiers" that gently colour the result text
+  const driveLot = q4 === 'high';
+  const driveLittle = q4 === 'low';
+  const leasingMind = q5 === 'lease';
+  const cashMind = q5 === 'cash';
+
+  // Helper for adding a one-line note about Q4/Q5 to the description
+  const econNote = ` Med dit kørselsmønster og ${leasingMind ? 'din lyst til leasing' : cashMind ? 'din langsigtede ejertanke' : 'din ramme'}, har vi vægtet driftsøkonomi og fleksibilitet derefter.`;
+
+  // Tech + range anxiety => pivot to PHEV
   if (branch === 'tech' && q2 === 'range_anxiety'){
     return {
       title: "Den Pragmatiske Innovatør",
-      desc:  "Du elsker det moderne – men du vil ikke risikere ferien for det. Du er typen, der hellere går to skridt fremad i et fast tempo, end ét stort, der ender i et regnestykke. En plug-in hybrid giver dig elbilsfølelsen i hverdagen og roen på de lange ture.",
+      desc:  "Du elsker det moderne – men du vil ikke risikere ferien for det. Du er typen, der hellere går to skridt fremad i et fast tempo, end ét stort, der ender i et regnestykke. En plug-in hybrid giver dig elbilsfølelsen i hverdagen og roen på de lange ture." + econNote,
       traits: ['Nysgerrig','Ansvarlig','Realistisk'],
       cars: [
-        {
-          name:'Peugeot 3008 Plug-in Hybrid',
-          tag:'Plug-in Hybrid · Familie-SUV',
-          variant:'phev',
-          why:[
-            'Elektrisk i hverdagen, benzin på ferien – din “bedst af to verdener”-profil ramt i hjertet.',
-            'i-Cockpit med skærm og knapper – moderne uden at blive et menuhelvede.',
-            'Højt siddende, men kompakt nok til byen og din p-plads.'
-          ]
-        },
-        {
-          name:'Kia Niro Plug-in Hybrid',
-          tag:'Plug-in Hybrid · Crossover',
-          variant:'phev',
-          why:[
-            'Rolig, fornuftig og veludstyret – du behøver ikke forsvare valget overfor naboen.',
-            '7 års garanti tager den sidste tvivl ud af regnestykket.',
-            'Lav driftsøkonomi til pendling, lang rækkevidde til weekenden i Skagen.'
-          ]
-        }
+        { name:'Peugeot 3008 Plug-in Hybrid', tag:'Plug-in Hybrid · Familie-SUV', variant:'phev', inStock:true, why:[
+          'Elektrisk i hverdagen, benzin på ferien – din “bedst af to verdener”-profil ramt i hjertet.',
+          'i-Cockpit med skærm og knapper – moderne uden at blive et menuhelvede.',
+          'Højt siddende, men kompakt nok til byen og din p-plads.'
+        ]},
+        { name:'Kia Niro Plug-in Hybrid', tag:'Plug-in Hybrid · Crossover', variant:'phev', inStock:false, why:[
+          'Rolig, fornuftig og veludstyret – du behøver ikke forsvare valget overfor naboen.',
+          '7 års garanti tager den sidste tvivl ud af regnestykket.',
+          'Lav driftsøkonomi til pendling, lang rækkevidde til weekenden i Skagen.'
+        ]}
       ]
     };
   }
@@ -484,31 +608,23 @@ function computeResult(){
     const sporty = q3 === 'sport';
     return {
       title: sporty ? "Den Stille Speed-Entusiast" : "Tech-Optimisten",
-      desc:  sporty
+      desc:  (sporty
         ? "Du er ikke til motorbrøl – du er til det øjeblik, hvor bilen bare svarer, før du har tænkt færdig. Lydløst træk, øjeblikkelig respons og en kabine, der føles som fremtiden."
-        : "Du tror på, at en bil bør blive bedre, jo længere du ejer den. Software-opdateringer, smart hjemmeladning og en skærm, der faktisk er hurtig nok.",
+        : "Du tror på, at en bil bør blive bedre, jo længere du ejer den. Software-opdateringer, smart hjemmeladning og en skærm, der faktisk er hurtig nok.")
+        + (driveLot ? " Med dine mange årlige kilometer giver elbilen særlig god mening – både økonomisk og komfortmæssigt." : "")
+        + econNote,
       traits: ['Nysgerrig','Fremsynet','Detaljeorienteret'],
       cars: [
-        {
-          name:'Tesla Model Y Long Range',
-          tag:'Elbil · Premium SUV',
-          variant:'ev',
-          why:[
-            'Acceleration og respons matcher den moderne følelse, du jagter.',
-            'Over-the-air opdateringer betyder, at bilen vokser med dig.',
-            'Supercharger-netværk gør lange ture forudsigelige – ikke en sport.'
-          ]
-        },
-        {
-          name:'Volkswagen ID.4 Pro',
-          tag:'Elbil · Familie-SUV',
-          variant:'ev',
-          why:[
-            'Tysk soliditet og rolig kørekomfort – ikke al teknologi behøver råbe.',
-            'Stor bagage, høj kørestilling – moderne uden at gå på kompromis.',
-            'Realistisk rækkevidde til både pendling og weekendtur.'
-          ]
-        }
+        { name:'Tesla Model Y Long Range', tag:'Elbil · Premium SUV', variant:'ev', inStock:true, why:[
+          'Acceleration og respons matcher den moderne følelse, du jagter.',
+          'Over-the-air opdateringer betyder, at bilen vokser med dig.',
+          'Supercharger-netværk gør lange ture forudsigelige – ikke en sport.'
+        ]},
+        { name:'Volkswagen ID.4 Pro', tag:'Elbil · Familie-SUV', variant:'ev', inStock:true, why:[
+          'Tysk soliditet og rolig kørekomfort – ikke al teknologi behøver råbe.',
+          'Stor bagage, høj kørestilling – moderne uden at gå på kompromis.',
+          'Realistisk rækkevidde til både pendling og weekendtur.'
+        ]}
       ]
     };
   }
@@ -520,33 +636,25 @@ function computeResult(){
       title: carseats ? "Familie-Logistikeren med Rygradsbeskyttelse"
                        : vacation ? "Familie-Eventyreren"
                                   : "Familie-Logistikeren",
-      desc:  carseats
+      desc:  (carseats
         ? "Du har et job, et liv og en ryg, der minder dig om begge dele. Bilen skal hjælpe dig – ikke koste dig endnu en kiropraktor-tid. Høj sædeposition og smarte detaljer gør dagen 30 minutter kortere."
         : vacation
         ? "Hverdagen kører, men ferien er hellig. Bilen må gerne være stor, rolig og af den slags, der bare fortsætter, når motorvejen gør."
-        : "Du orkestrerer en lille familie hver morgen. Bilen er ikke et statussymbol – den er din mest loyale medarbejder.",
+        : "Du orkestrerer en lille familie hver morgen. Bilen er ikke et statussymbol – den er din mest loyale medarbejder.")
+        + (driveLittle ? " Med dit lavere kilometerantal kan benzin/hybrid være lige så fornuftig som el." : "")
+        + econNote,
       traits: ['Praktisk','Ansvarlig','Familietro'],
       cars: [
-        {
-          name:'Škoda Enyaq iV',
-          tag:'Elbil · Familie-SUV',
-          variant:'suv',
-          why:[
-            'Højt siddende kabine – farvel til ryg-mareridtet ved autostolen.',
-            'Bagage, der sluger ugens indkøb og en barnevogn på samme tid.',
-            'Rolig, tysk-tjekkisk kørsel – ingen drama på skolevejen.'
-          ]
-        },
-        {
-          name:'Volkswagen Passat Variant',
-          tag:'Stationcar · Hybrid tilgængelig',
-          variant:'estate',
-          why:[
-            'Et bagagerum, der virkelig betyder ferie uden tetris.',
-            'Komfortable langturssæder – Vestkysten føles tættere på.',
-            'Klassisk, rolig kørsel – bilen, der bare leverer i 10 år.'
-          ]
-        }
+        { name:'Škoda Enyaq iV', tag:'Elbil · Familie-SUV', variant:'suv', inStock:true, why:[
+          'Højt siddende kabine – farvel til ryg-mareridtet ved autostolen.',
+          'Bagage, der sluger ugens indkøb og en barnevogn på samme tid.',
+          'Rolig, tysk-tjekkisk kørsel – ingen drama på skolevejen.'
+        ]},
+        { name:'Volkswagen Passat Variant', tag:'Stationcar · Hybrid tilgængelig', variant:'estate', inStock:false, why:[
+          'Et bagagerum, der virkelig betyder ferie uden tetris.',
+          'Komfortable langturssæder – Vestkysten føles tættere på.',
+          'Klassisk, rolig kørsel – bilen, der bare leverer i 10 år.'
+        ]}
       ]
     };
   }
@@ -556,52 +664,33 @@ function computeResult(){
   return {
     title: parking ? "Den Tryghedssøgende Bymester"
                    : "Den Tryghedssøgende Livsnyder",
-    desc:  parking
+    desc:  (parking
       ? "Du elsker bylivet, men ikke kampen om p-pladserne. Du fortjener en bil, der gør parkering til et nul-stress-projekt – og som stadig føles som dig, når du er ude på de lange ture."
-      : "Du har fundet ud af, at livets gode ting ofte er de stille. En bil må gerne være elegant og tilstede – men aldrig anstrengt. Komfort er for dig en form for selvrespekt.",
+      : "Du har fundet ud af, at livets gode ting ofte er de stille. En bil må gerne være elegant og tilstede – men aldrig anstrengt. Komfort er for dig en form for selvrespekt.")
+      + econNote,
     traits: ['Rolig','Æstetisk','Loyal'],
     cars: parking ? [
-      {
-        name:'Peugeot 3008',
-        tag:'Kompakt SUV · 360° kamera',
-        variant:'compact',
-        why:[
-          '360° kamera og parkeringspilot fjerner det sidste pres i bymidten.',
-          'Kompakte mål – men højere sædeposition end en almindelig bil.',
-          'Lækker, rolig kabine. Du lander, så snart du sætter dig ind.'
-        ]
-      },
-      {
-        name:'Volkswagen T-Roc',
-        tag:'Kompakt SUV · Hverdagsven',
-        variant:'compact',
-        why:[
-          'Smal nok til parkeringskælderen, høj nok til at føles tryg.',
-          'Intuitive knapper – ingen menudykning for at skrue ned for varmen.',
-          'Pålidelig, blød kørsel – den bil, der bare bliver i familien.'
-        ]
-      }
+      { name:'Peugeot 3008', tag:'Kompakt SUV · 360° kamera', variant:'compact', inStock:true, why:[
+        '360° kamera og parkeringspilot fjerner det sidste pres i bymidten.',
+        'Kompakte mål – men højere sædeposition end en almindelig bil.',
+        'Lækker, rolig kabine. Du lander, så snart du sætter dig ind.'
+      ]},
+      { name:'Volkswagen T-Roc', tag:'Kompakt SUV · Hverdagsven', variant:'compact', inStock:true, why:[
+        'Smal nok til parkeringskælderen, høj nok til at føles tryg.',
+        'Intuitive knapper – ingen menudykning for at skrue ned for varmen.',
+        'Pålidelig, blød kørsel – den bil, der bare bliver i familien.'
+      ]}
     ] : [
-      {
-        name:'Volvo XC60',
-        tag:'Premium SUV · Komfort',
-        variant:'sedan',
-        why:[
-          'Skandinavisk ro i kabinen – støjisolering i absolut topklasse.',
-          'Ergonomiske sæder, der er designet til lange ture uden trætte skuldre.',
-          'Diskret, elegant udtryk – luksus uden at råbe det.'
-        ]
-      },
-      {
-        name:'Audi A4 Avant',
-        tag:'Stationcar · Premium',
-        variant:'estate',
-        why:[
-          'Stabil motorvejskørsel og en kabine, der dæmper verden udenfor.',
-          'Klassiske knapper og skærme i god balance – ingen menuhelvede.',
-          'En tidløs profil, der ældes med ynde – ligesom en god jakke.'
-        ]
-      }
+      { name:'Volvo XC60', tag:'Premium SUV · Komfort', variant:'sedan', inStock:true, why:[
+        'Skandinavisk ro i kabinen – støjisolering i absolut topklasse.',
+        'Ergonomiske sæder, designet til lange ture uden trætte skuldre.',
+        'Diskret, elegant udtryk – luksus uden at råbe det.'
+      ]},
+      { name:'Audi A4 Avant', tag:'Stationcar · Premium', variant:'estate', inStock:false, why:[
+        'Stabil motorvejskørsel og en kabine, der dæmper verden udenfor.',
+        'Klassiske knapper og skærme i god balance – ingen menuhelvede.',
+        'En tidløs profil, der ældes med ynde – ligesom en god jakke.'
+      ]}
     ]
   };
 }
@@ -610,7 +699,7 @@ function computeResult(){
 const $ = (sel, root=document) => root.querySelector(sel);
 const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
 
-function setStep(n, {fromRestart=false} = {}){
+function setStep(n){
   const steps = $$('.step');
   const current = steps.find(s => s.classList.contains('is-active'));
   const next = steps.find(s => Number(s.dataset.step) === n);
@@ -636,16 +725,20 @@ function updateProgress(){
   const fill  = $('#progressFill');
   const restartTop = $('#restartTop');
 
-  if (state.step <= 3){
-    label.textContent = `Spørgsmål ${state.step} af 3`;
-    fill.style.width = `${(state.step / 4) * 100}%`;
+  if (state.step <= 5){
+    label.textContent = `Spørgsmål ${state.step} af 5`;
+    fill.style.width = `${(state.step / 6) * 100}%`;
     restartTop.classList.toggle('hidden', state.step === 1);
-  } else if (state.step === 4){
-    label.textContent = 'Kontaktoplysninger';
+  } else if (state.step === 6){
+    label.textContent = 'Din køreprofil';
     fill.style.width = '85%';
     restartTop.classList.remove('hidden');
+  } else if (state.step === 7){
+    label.textContent = state.booking.mode === 'jacob' ? 'Find min bil med Jacob' : 'Book prøvetur';
+    fill.style.width = '95%';
+    restartTop.classList.remove('hidden');
   } else {
-    label.textContent = 'Din køreprofil';
+    label.textContent = 'Bekræftelse';
     fill.style.width = '100%';
     restartTop.classList.add('hidden');
   }
@@ -677,8 +770,7 @@ function renderOptions(targetSel, options, onPick){
 }
 
 function buildStep2(){
-  const branch = state.answers.branch;
-  const data = Q2[branch];
+  const data = Q2[state.answers.branch];
   $('#q2-title').textContent = data.title;
   $('#q2-sub').textContent = data.sub;
   renderOptions('#q2-options', data.options, val => {
@@ -687,20 +779,34 @@ function buildStep2(){
     setStep(3);
   });
 }
-
 function buildStep3(){
-  const branch = state.answers.branch;
-  const data = Q3[branch];
+  const data = Q3[state.answers.branch];
   $('#q3-title').textContent = data.title;
   $('#q3-sub').textContent = data.sub;
   renderOptions('#q3-options', data.options, val => {
     state.answers.q3 = val;
+    buildStep4();
     setStep(4);
+  });
+}
+function buildStep4(){
+  renderOptions('#q4-options', Q4_OPTIONS, val => {
+    state.answers.q4 = val;
+    buildStep5();
+    setStep(5);
+  });
+}
+function buildStep5(){
+  renderOptions('#q5-options', Q5_OPTIONS, val => {
+    state.answers.q5 = val;
+    state.result = computeResult();
+    renderResult();
+    setStep(6);
   });
 }
 
 function renderResult(){
-  const r = computeResult();
+  const r = state.result;
   $('#profileTitle').textContent = `“${r.title}”`;
   $('#profileDesc').textContent = r.desc;
 
@@ -715,60 +821,176 @@ function renderResult(){
 
   const carWrap = $('#carResults');
   carWrap.innerHTML = '';
-  r.cars.forEach(car => {
+  r.cars.forEach((car, idx) => {
     const card = document.createElement('article');
     card.className = 'car-card';
+    const stockHtml = car.inStock
+      ? `<span class="stock-badge stock-on"><span class="dot"></span>På lager nu</span>`
+      : `<span class="stock-badge stock-off"><span class="dot"></span>Ikke på lager – Jacob kan finde den</span>`;
+    const ctaHtml = car.inStock
+      ? `<button class="btn-primary text-sm !py-2.5 !px-5" data-book-car="${idx}">Book prøvetur</button>`
+      : `<button class="btn-accent text-sm !py-2.5 !px-5" data-jacob-car="${idx}">Få Jacob til at finde den</button>`;
     card.innerHTML = `
       <div class="car-illu">${carSvg(car.variant)}</div>
       <div class="p-5">
-        <div class="flex items-center justify-between gap-3 mb-2">
+        <div class="flex items-center justify-between gap-3 mb-2 flex-wrap">
           <h4 class="font-display text-lg text-ink leading-tight">${car.name}</h4>
-          <span class="pill">${car.tag}</span>
+          ${stockHtml}
         </div>
-        <ul class="mt-2 space-y-2">
+        <span class="pill">${car.tag}</span>
+        <ul class="mt-3 space-y-2">
           ${car.why.map(w => `
             <li class="flex gap-2 text-[14px] text-ink-soft">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="mt-0.5 flex-none text-accent"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
               <span>${w}</span>
             </li>`).join('')}
         </ul>
-        <div class="mt-4 flex items-center justify-between">
-          <a href="#" class="text-sm font-semibold text-primary hover:underline">Se ${car.name.split(' ')[0]}-modeller på lager →</a>
-          <a href="#" class="text-xs text-mute hover:text-ink">Beregn finansiering</a>
+        <div class="mt-4 flex items-center justify-between gap-3 flex-wrap">
+          ${ctaHtml}
+          <a href="https://mengbiler.dk/biler-til-salg/" target="_blank" rel="noopener" class="text-sm font-semibold text-primary hover:underline">Se lageret →</a>
         </div>
       </div>
     `;
     carWrap.appendChild(card);
   });
+
+  // wire booking CTAs
+  $$('[data-book-car]', carWrap).forEach(b => {
+    b.addEventListener('click', () => openBooking('testdrive', Number(b.dataset.bookCar)));
+  });
+  $$('[data-jacob-car]', carWrap).forEach(b => {
+    b.addEventListener('click', () => openBooking('jacob', Number(b.dataset.jacobCar)));
+  });
+}
+
+/* ---------- Booking flow ---------- */
+function openBooking(mode, carIndex){
+  state.booking = { mode, carIndex };
+
+  const r = state.result;
+  const car = r.cars[carIndex];
+
+  const isJacob = mode === 'jacob';
+
+  $('#bookingTitle').textContent = isJacob
+    ? 'Lad Jacob finde din næste bil'
+    : `Book prøvetur i ${car.name}`;
+
+  $('#bookingIntro').textContent = isJacob
+    ? `Skriv hvilken model du leder efter, så går Jacob på jagt i sit netværk og vender tilbage inden for én arbejdsdag med, hvad han kan finde – og til hvilken pris.`
+    : `Vælg en tid, der passer dig i Erritsø Møllebanke 4, Fredericia. Vi har bilen klar, og kaffen er på kanden.`;
+
+  // Build mode picker (lets user toggle between the two cars + jacob option)
+  const picker = $('#modePicker');
+  picker.innerHTML = '';
+  r.cars.forEach((c, idx) => {
+    const sel = (!isJacob && idx === carIndex);
+    const card = document.createElement('button');
+    card.type = 'button';
+    card.className = 'mode-card';
+    card.setAttribute('aria-selected', String(sel));
+    card.innerHTML = `
+      <div class="flex items-center justify-between gap-3">
+        <div>
+          <div class="text-[11px] uppercase tracking-wider text-mute">Prøvetur</div>
+          <div class="font-semibold text-ink mt-0.5">${c.name}</div>
+          <div class="text-xs text-mute mt-0.5">${c.tag}</div>
+        </div>
+        <div class="text-[11px] font-semibold ${c.inStock ? 'text-[var(--meng-success)]' : 'text-[#B26415]'}">${c.inStock ? 'På lager' : 'Skaffes hjem'}</div>
+      </div>`;
+    card.addEventListener('click', () => switchMode('testdrive', idx));
+    picker.appendChild(card);
+  });
+  const jacobCard = document.createElement('button');
+  jacobCard.type = 'button';
+  jacobCard.className = 'mode-card sm:col-span-2';
+  jacobCard.setAttribute('aria-selected', String(isJacob));
+  jacobCard.innerHTML = `
+    <div class="flex items-center justify-between gap-3">
+      <div>
+        <div class="text-[11px] uppercase tracking-wider text-accent">Jacob hjælper</div>
+        <div class="font-semibold text-ink mt-0.5">Lad Jacob finde præcis den bil, du drømmer om</div>
+        <div class="text-xs text-mute mt-0.5">Han ringer eller skriver tilbage inden for én arbejdsdag.</div>
+      </div>
+      <div class="w-9 h-9 rounded-full bg-[#E8F1FB] grid place-items-center text-primary font-display flex-none">J</div>
+    </div>`;
+  jacobCard.addEventListener('click', () => switchMode('jacob', carIndex));
+  picker.appendChild(jacobCard);
+
+  // Toggle which fields are visible
+  $('#dateField').classList.toggle('hidden', isJacob);
+  $('#timeField').classList.toggle('hidden', isJacob);
+  $('#modelField').classList.toggle('hidden', !isJacob);
+
+  if (isJacob){
+    $('#oensketModel').value = car ? car.name : '';
+  }
+
+  // Reasonable default date: today + 2
+  if (!isJacob){
+    const d = new Date(); d.setDate(d.getDate()+2);
+    $('#dato').min = new Date().toISOString().slice(0,10);
+    if (!$('#dato').value) $('#dato').value = d.toISOString().slice(0,10);
+  }
+
+  $('#submitBtn').textContent = isJacob ? 'Send min forespørgsel til Jacob →' : 'Bekræft prøvetur →';
+
+  setStep(7);
+}
+
+function switchMode(mode, carIndex){
+  openBooking(mode, carIndex);
 }
 
 /* ---------- Form validation ---------- */
 function validateForm(){
   let ok = true;
+  const isJacob = state.booking.mode === 'jacob';
+
+  const setInvalid = (input, invalid) => input.closest('.field').classList.toggle('invalid', invalid);
 
   const navn = $('#navn');
   const email = $('#email');
   const tlf = $('#tlf');
 
-  const setInvalid = (input, invalid) => input.closest('.field').classList.toggle('invalid', invalid);
-
   const nameOk = navn.value.trim().length >= 2;
-  setInvalid(navn, !nameOk);
-  if (!nameOk) ok = false;
+  setInvalid(navn, !nameOk); if (!nameOk) ok = false;
 
   const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.value.trim());
-  setInvalid(email, !emailOk);
-  if (!emailOk) ok = false;
+  setInvalid(email, !emailOk); if (!emailOk) ok = false;
 
   const tlfDigits = tlf.value.replace(/\D/g,'');
   const tlfOk = tlfDigits.length >= 8;
-  setInvalid(tlf, !tlfOk);
-  if (!tlfOk) ok = false;
+  setInvalid(tlf, !tlfOk); if (!tlfOk) ok = false;
 
-  if (ok){
-    state.lead = { navn: navn.value.trim(), email: email.value.trim(), tlf: tlf.value.trim() };
+  if (!isJacob){
+    const dato = $('#dato');
+    const datoOk = !!dato.value;
+    setInvalid(dato, !datoOk); if (!datoOk) ok = false;
+  } else {
+    const model = $('#oensketModel');
+    const modelOk = model.value.trim().length >= 2;
+    setInvalid(model, !modelOk); if (!modelOk) ok = false;
   }
+
   return ok;
+}
+
+function renderConfirmation(){
+  const isJacob = state.booking.mode === 'jacob';
+  const navn = $('#navn').value.trim().split(' ')[0] || 'der';
+  const car = state.result.cars[state.booking.carIndex];
+
+  if (isJacob){
+    $('#confirmTitle').textContent = `Tak, ${navn}! Jacob er på sagen.`;
+    $('#confirmDesc').textContent = `Jacob fra Meng Biler kontakter dig inden for én arbejdsdag på den e-mail eller telefon, du har oplyst, med hvad han kan finde af ${$('#oensketModel').value.trim()}. Imens er du meget velkommen til at kigge forbi vores lager i Erritsø og se, hvad vi har stående.`;
+  } else {
+    const dato = $('#dato').value;
+    const tid = $('#tid').value || 'et passende tidspunkt';
+    const datoFormatted = dato ? new Date(dato).toLocaleDateString('da-DK', {weekday:'long', day:'numeric', month:'long'}) : '';
+    $('#confirmTitle').textContent = `Tak, ${navn}! Vi glæder os til at se dig.`;
+    $('#confirmDesc').textContent = `Din prøvetur i ${car.name} er noteret til ${datoFormatted}, ${tid}. En rådgiver bekræfter tidspunktet inden for én arbejdsdag. Kaffen er klar, når du kommer.`;
+  }
 }
 
 /* ---------- Wire up ---------- */
@@ -784,27 +1006,32 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Lead form
+  // Back buttons
+  $$('[data-back]').forEach(b => b.addEventListener('click', () => setStep(Number(b.dataset.back))));
+  $$('[data-back-to-result]').forEach(b => b.addEventListener('click', () => setStep(6)));
+
+  // Jacob shortcut on result screen
+  $$('[data-jacob]').forEach(b => b.addEventListener('click', () => openBooking('jacob', 0)));
+
+  // Lead form submit
   $('#leadForm').addEventListener('submit', e => {
     e.preventDefault();
     if (validateForm()){
-      renderResult();
-      setStep(5);
+      renderConfirmation();
+      setStep(8);
     }
   });
 
-  // Back button on form
-  $$('[data-back]').forEach(b => b.addEventListener('click', () => setStep(3)));
-
-  // Restart buttons
+  // Restart
   const restart = () => {
     state.step = 1;
-    state.answers = { branch:null, q2:null, q3:null };
-    state.lead = { navn:'', email:'', tlf:'' };
+    state.answers = { branch:null, q2:null, q3:null, q4:null, q5:null };
+    state.result = null;
+    state.booking = { mode:null, carIndex:0 };
     $('#leadForm').reset();
     $$('.field').forEach(f => f.classList.remove('invalid'));
     $$('.opt').forEach(x => x.setAttribute('aria-selected','false'));
-    setStep(1, {fromRestart:true});
+    setStep(1);
   };
   $$('[data-restart]').forEach(b => b.addEventListener('click', restart));
   $('#restartTop').addEventListener('click', restart);
